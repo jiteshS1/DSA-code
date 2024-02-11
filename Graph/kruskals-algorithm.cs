@@ -1,0 +1,3 @@
+/*
+We can use disjoint sets to solve this.
+*/
