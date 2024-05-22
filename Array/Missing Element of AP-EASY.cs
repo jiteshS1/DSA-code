@@ -1,0 +1,29 @@
+class Solution {
+    int findMissing(int[] arr, int n) {
+        int prevDiff=-1;
+        // code here
+        for(int index=0; index<n-1; index++)
+        {
+            if(prevDiff == -1)
+            {
+                //Get diff.
+                prevDiff = arr[index+1] - arr[index];
+            }
+            int newDiff = arr[index+1] - arr[index] ;
+            if(prevDiff > newDiff)
+            {
+                return arr[0] + newDiff;
+            }else if(prevDiff == newDiff){
+                continue;
+            }else if(prevDiff < newDiff){
+                return arr[index] + prevDiff;
+            }
+        }
+        if(n==2)
+        {
+            prevDiff = prevDiff/2;
+            return arr[0] + prevDiff;
+        }
+        return -1;
+    }
+}

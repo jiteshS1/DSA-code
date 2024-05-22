@@ -1,0 +1,25 @@
+int[] findTwoElement(int arr[], int n) {
+        // code here
+        long N = (long) n; 
+        int[] result= new int[2]; 
+        //Find sum of n numbers
+        long SumN = (N*(N+1))/2, Sum=0, Sum2=0,
+            SumN2 = (N * (N+1) * (2*N+1))/6; //Find Sum of n^2 numbers
+        
+        for(int i=0; i<N; i++)
+        {
+            Sum += arr[i];
+            Sum2 += (arr[i] * arr[i]);
+        }
+        long val1 = Sum - SumN,
+            val2 = Sum2 - SumN2;
+            
+        val2 = val2/val1;
+        int x = (int) ((val1+val2)/2), //(val2 + (val1 * val1))/2 * val1,
+            y = (int) (x - val1); //(val2 - (val1 * val1))/2 * val1;
+        
+        result[0] = x;
+        result[1] = y;
+        
+        return result;
+    }
