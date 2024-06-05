@@ -7,22 +7,22 @@ public class Solution {
         return res;
     }
     public void RecPerm(IList<IList<int>> res, IList<int> list, bool[] map, int[] nums){
-    if(list.Count == nums.Length){
-        res.Add(new List<int>(list));
-        return;
-    }
-    for(int i=0; i<nums.Length; i++){
-        if(map[i]==false)
-        {
-            list.Add(nums[i]);
-            map[i]= true;
-            RecPerm(res, list, map, nums);
-            list.RemoveAt(list.Count-1);
-            map[i]= false;
+        if(list.Count == nums.Length){
+            res.Add(new List<int>(list));
+            return;
         }
-        
+        for(int i=0; i<nums.Length; i++){
+            if(map[i]==false)
+            {
+                list.Add(nums[i]);
+                map[i]= true;
+                RecPerm(res, list, map, nums);
+                list.RemoveAt(list.Count-1);
+                map[i]= false;
+            }
+            
+        }
     }
-}
 }
 /*
 Above solution is taking extra memory for storing map values, 

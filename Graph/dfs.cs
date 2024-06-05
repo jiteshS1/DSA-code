@@ -79,7 +79,7 @@ class Graph {
 		g.DFS(2);
 		Console.ReadKey();
 	}
-}
+
 /*
 - Variables:
     - Visted node array.
@@ -91,5 +91,88 @@ class Graph {
         - Print Node --- It will print all nodes
         - Loop neighbour nodes (Check from adj. list)
             - dfs(neighbourNode)
+
+Recursive solution:
+//{ Driver Code Starts
+//Initial Template for C#
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DriverCode
+{
+
+    class GFG
+    {
+        static void Main(string[] args)
+        {
+            int testcases;// Taking testcase as input
+            testcases = Convert.ToInt32(Console.ReadLine());
+            while (testcases-- > 0)// Looping through all testcases
+            {
+
+                var ip = Console.ReadLine().Trim().Split(' ');
+                int V = int.Parse(ip[0]);
+                int E = int.Parse(ip[1]);
+                List<int>[] adj = new List<int>[V];
+                for (int i = 0; i < V; i++)
+                {
+                    adj[i] = new List<int>();
+                }
+                for (int i = 0; i < E; i++)
+                {
+                    ip = Console.ReadLine().Trim().Split(' ');
+                    int u = int.Parse(ip[0]);
+                    int v = int.Parse(ip[1]);
+                    adj[u].Add(v);
+                    adj[v].Add(u);
+                }
+                Solution obj = new Solution();
+                var res = obj.dfsOfGraph(V, adj);
+                foreach (int i in res)
+                {
+                    Console.Write(i + " ");
+                }
+                Console.WriteLine();
+            }
+
+        }
+    }
+}
+
+// } Driver Code Ends
+
+
+//User function Template for C#
+
+class Solution
+{
+    //Complete this function
+    //Function to return a list containing the DFS traversal of the graph.
+    public int[] dfsOfGraph(int V, List<int>[] adj)
+    {
+        //Your code here
+        var res = new int[V];
+        var vis = new bool[V];
+        int count = 0;
+        DFS(0, adj, ref res, ref count, ref vis);
+        return res;
+    }
+    public void DFS(int i, List<int>[] adj, ref int[] res, ref int count, ref bool[] vis){
+        if(vis[i]==false){
+            res[count++] = i;
+            vis[i] = true;
+            for(int j=0; j<adj[i].Count(); j++){
+                if(vis[adj[i][j]]==false){
+                    DFS(adj[i][j], adj, ref res, ref count, ref vis);
+                }
+            }
+        }
+    }
+}
+TC, SC: O(V +E)
              
 */
