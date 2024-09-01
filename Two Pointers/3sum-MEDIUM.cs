@@ -24,7 +24,7 @@ public class Solution {
                     res.Add(triplets);
                     triplets = new List<int>();
                     l++;
-                    while(nums[l] == nums[l-    1] && l<r)
+                    while(nums[l] == nums[l-1] && l<r)
                         l++;
                 } 
             }

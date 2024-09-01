@@ -1,0 +1,39 @@
+public class Solution {
+    public int FindPeakElement(int[] nums) {
+        int n = nums.Length;
+        //Edge cases
+        if(n == 1)
+            return 0;
+        
+        // if(n == 2){
+        //     if(nums[0] < nums[1])
+        //         return 1;
+        //     else
+        //         return 0;
+        // }
+        if(nums[0] > nums[1])
+            return 0;
+        if(nums[n-1] > nums[n-2])
+            return n-1;
+
+        //Declaring variables
+        int low = 1, high = n-2;
+        while(low <= high){
+            int mid = (low+high)/2;
+
+            if(nums[mid] > nums[mid-1] && nums[mid] > nums[mid+1])
+                return mid;
+            else if(nums[mid] > nums[mid-1])
+                low = mid+1;
+            else
+                high = mid-1;
+
+        }
+        return -1;
+    }
+}
+/*
+    Brute force: Loop each num in array & check if it is greater then it's neighbour
+    TC: O(n)
+Binary search can only give TC: O(logn)
+*/

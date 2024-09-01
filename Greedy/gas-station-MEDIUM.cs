@@ -28,6 +28,46 @@ public class Solution {
     }
 }
 /*
+class Solution {
+    public int canCompleteCircuit(List<int> A, List<int> B) {
+        int startIndex = 0, currentGas = 0;
+        
+        for(int i=0; i<A.Count(); i++){
+            startIndex = i;
+            int currentIndex = startIndex;
+            currentGas += A[i];
+            if(currentGas >= B[i]){
+                //I can go to next station
+                currentIndex++;
+                currentIndex = currentIndex % A.Count(); 
+                currentGas -= B[i];
+                while(startIndex != currentIndex){
+                    currentGas += A[currentIndex];
+                    if(currentGas >= B[currentIndex]){
+                        //I can go to next station
+                        currentGas -= B[currentIndex];
+                    }else{
+                        //I cannot go to next station
+                        if(currentIndex>i)
+                            i = currentIndex; //Update i index
+                            
+                        currentGas = 0;
+                        break;
+                    }
+                    currentIndex++;
+                    currentIndex = currentIndex % A.Count(); 
+                }   
+                if(startIndex ==  currentIndex)
+                    return startIndex;
+            }else{
+                currentGas = 0;
+            }
+        }
+        return -1;
+    }
+}
+
+
 #Better solution:
 TC: O(n), SC: O(1)
 https://leetcode.com/problems/gas-station/solutions/1706142/java-c-python-an-explanation-that-ever-exists-till-now/

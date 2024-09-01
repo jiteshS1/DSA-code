@@ -9,5 +9,5 @@ public class Solution {
 }
 /*
 TC: O(n) SC: O(1)
-In XOR in bits are same it will return 0, else 1 
+In XOR if bits are same it will return 0, else 1 
 */
